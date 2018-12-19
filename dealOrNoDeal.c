@@ -6,9 +6,9 @@
 
 char caseNumbers[][10] = {"01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20"};
 char prizes[][50] = {"1        ","5        ","10       ","25       ","50       ","75       ","100      ","200      ","500      ","750      ","1,000    ","5,000    ","10,000   ","25,000   ","50,000   ","75,000   ","100,000  ","250,000  ","500,000  ","1,000,000"};
-int x[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+int x[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
 int casesOpened[20];
-int notOver = 1;
+int notOver = 1, len = 0;
 int choice;
 
 void welcomeScreen(){
@@ -110,10 +110,17 @@ void openCase(){
             printf("Invalid Choice.\n");
         }else{
             cont = 0;
+            for(int i = 0; i < len; i++){
+                if(currentChoice == casesOpened[i]){
+                    printf("Invalid Choice.\n");
+                    cont = 1;
+                }
+            }
         }
     }while(cont);
-    // system("cls");
     currentChoice--;
+    casesOpened[len] = currentChoice + 1;
+    len++;
     inside = x[currentChoice];
     sleep(2);
     printf("    ------------------\n");
@@ -132,7 +139,20 @@ void openCase(){
 }
 
 void bankerOffer(){
-
+    char offerChoice;
+    system("cls");
+    printf("--------------BANKER'S OFFER--------------\n");
+    printf(":                                        :\n");
+    printf(":                 1,000                  :\n");
+    printf(":                                        :\n");
+    printf("------------------------------------------\n\n");
+    printf("    press 'Y' - DEAL, any - NO DEAL\n");
+    offerChoice = getch();
+    if(offerChoice == 'y' || offerChoice == 'Y'){
+        notOver = 0;
+        system("cls");
+        printf("");
+    }
 }
 
 
@@ -140,6 +160,11 @@ int main(){
     // printf("%i", sizeof(x)/sizeof(x[0]));
     welcomeScreen();
     juggleCases();
+    // for(int i = 0; i < 20; i++){
+    //     printf("%i ", x[i]);
+    // }
+    // printf("\n");
+    // sleep(10);
     if(notOver){
         system("cls");
         chooseCase();
@@ -151,6 +176,20 @@ int main(){
         for(int i = 5; i > 0; i--){
             printf("%i more case(s) to open\n", i);
             openCase();
+        }
+        // for(int i = 0; i < len; i++){
+        //     printf("%i ", casesOpened[i]);
+        // }
+        sleep(5);
+        bankerOffer();
+        if(notOver){
+            // for(int i = 4; i > 0; i++){
+            //     printf("%i more case(s) to open\n", i);
+            //     openCase();
+            // }
+            // bankerOffer();
+        }else{
+            printf("\nThank you for playing :-)\n");
         }
     }else{
         system("cls");
