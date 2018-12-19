@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <time.h>
 
+char caseNumbers[][10] = {"01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20"};
+char prizes[][50] = {"1        ","5        ","10       ","25       ","50       ","75       ","100      ","200      ","500      ","750      ","1,000    ","5,000    ","10,000   ","25,000   ","50,000   ","75,000   ","100,000  ","250,000  ","500,000  ","1,000,000"};
 int x[] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
 int casesOpened[20];
 int notOver = 1;
@@ -25,7 +28,7 @@ void welcomeScreen(){
 
 }
 
-void choseCase(){
+void chooseCase(){
     printf("\n        -- NOW CHOOSE YOUR LUCKY BRIEFCASE --\n\n");
     printf("  ------     ------     ------     ------    ------\n");
     printf("  : 01 :     : 02 :     : 03 :     : 04 :    : 05 :\n");
@@ -45,14 +48,22 @@ void choseCase(){
     do{
         printf("Choice: ");
         scanf("%i", &choice);
-        if(choice < 0 || choice > 20){
+        if(choice < 1 || choice > 20){
             printf("Invalid Choice.\n");
         }
-    }while(choice < 0 || choice > 20);
+    }while(choice < 1 || choice > 20);
     
 }
 
 void displayCases(char n[][10], char a[][50]){
+    printf("\n\n");
+    printf("                ------\n");
+    if(choice < 10){
+        printf("Your briefcase  : 0%i :\n", choice);
+    }else{
+        printf("Your briefcase  : %i :\n", choice);
+    }
+    printf("                ------\n");
     printf("---------------------------------------------------------------------------------\n");
     printf("||           |                                                     |           ||\n");
     printf("||           |  ------     ------     ------     ------    ------  |           ||\n");
@@ -88,21 +99,59 @@ void juggleCases(){
     }
 }
 
+void openCase(){
+    int currentChoice;
+    int inside;
+    int cont = 1;
+    do{
+        printf("Choice: ");
+        scanf("%i", &currentChoice);
+        if(currentChoice < 1 || currentChoice > 20 || currentChoice == choice){
+            printf("Invalid Choice.\n");
+        }else{
+            cont = 0;
+        }
+    }while(cont);
+    // system("cls");
+    currentChoice--;
+    inside = x[currentChoice];
+    sleep(2);
+    printf("    ------------------\n");
+    printf("    :    %s   :\n", prizes[inside]);
+    printf("    ------------------\n");
+    for(int i = 0; i < 2; i++){
+        caseNumbers[currentChoice][i] = ' ';
+    }
+    for(int i = 0; i < 9; i++){
+        prizes[inside][i] = 'x';
+    }
+    sleep(4);
+    system("cls");
+    displayCases(caseNumbers, prizes);
+    
+}
+
 void bankerOffer(){
 
 }
 
 
 int main(){
-    char caseNumbers[][10] = {"01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20"};
-    char prizes[][50] = {"1        ","5        ","10       ","25       ","50       ","75       ","100      ","200      ","500      ","750      ","1,000    ","5,000    ","10,000   ","25,000   ","50,000   ","75,000   ","100,000  ","250,000  ","500,000  ","1,000,000"};
     // printf("%i", sizeof(x)/sizeof(x[0]));
     welcomeScreen();
     juggleCases();
     if(notOver){
         system("cls");
-        choseCase();
-        //displayCases(caseNumbers, prizes);
+        chooseCase();
+        for(int i = 0; i < 2; i++){
+            caseNumbers[choice-1][i] = ' ';
+        }
+        system("cls");
+        displayCases(caseNumbers, prizes);
+        for(int i = 5; i > 0; i--){
+            printf("%i more case(s) to open\n", i);
+            openCase();
+        }
     }else{
         system("cls");
         printf("\nThank you for playing :-)\n");
