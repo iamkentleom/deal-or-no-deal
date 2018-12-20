@@ -151,7 +151,9 @@ void bankerOffer(){
     if(offerChoice == 'y' || offerChoice == 'Y'){
         notOver = 0;
         system("cls");
-        printf("");
+        printf("------CONGRATULATIONS------");
+        printf(":                         :");
+        printf("---------------------------");
     }
 }
 
@@ -183,11 +185,52 @@ int main(){
         sleep(5);
         bankerOffer();
         if(notOver){
-            // for(int i = 4; i > 0; i++){
-            //     printf("%i more case(s) to open\n", i);
-            //     openCase();
-            // }
-            // bankerOffer();
+            for(int i = 4; i > 0; i++){
+                printf("%i more case(s) to open\n", i);
+                openCase();
+            }
+            sleep(5);
+            bankerOffer();
+            if(notOver){
+                for(int i = 3; i > 0; i++){
+                    printf("%i more case(s) to open\n", i);
+                    openCase();
+                }
+                sleep(5);
+                bankerOffer();
+                if(notOver){
+                    for(int i = 3; i > 0; i++){
+                        printf("%i more case(s) to open\n", i);
+                        openCase();
+                    }
+                    sleep(5);
+                    bankerOffer();
+                    if(notOver){
+                        for(int i = 2; i > 0; i++){
+                            printf("%i more case(s) to open\n", i);
+                            openCase();
+                        }
+                        sleep(5);
+                        bankerOffer();
+                        if(notOver){
+                            for(int i = 1; i > 0; i++){
+                                printf("%i more case(s) to open\n", i);
+                                openCase();
+                            }
+                            sleep(5);
+                            bankerOffer();
+                        }else{
+                            printf("\nThank you for playing :-)\n");
+                        }
+                    }else{
+                        printf("\nThank you for playing :-)\n");
+                    }
+                }else{
+                    printf("\nThank you for playing :-)\n");
+                }
+            }else{
+                printf("\nThank you for playing :-)\n");
+            }
         }else{
             printf("\nThank you for playing :-)\n");
         }
