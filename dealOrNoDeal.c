@@ -10,7 +10,8 @@ int x[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
 int casesOpened[20];
 int notOver = 1, len = 0;
 int choice;
-int currentMoney = 2017716;
+//int currentMoney = 2017716;
+int currentMoney = 1000000;
 
 
 int stripCommas(char s[9]){
