@@ -150,8 +150,8 @@ void openCase(){
     printf("    :    %s   :\n", prizes[inside]);
     printf("    ------------------\n");
     minus = stripCommas(prizes[inside]);
-    currentMoney -= minus;
-    printf("ans: %i\n", currentMoney);
+    currentMoney = currentMoney - minus;
+    // printf("ans: %i\n", currentMoney);
     for(int i = 0; i < 2; i++){
         caseNumbers[currentChoice][i] = ' ';
     }
@@ -203,52 +203,51 @@ int main(){
         }
         sleep(4);
         bankerOffer(5);
-        displayCases(caseNumbers, prizes);
     }
     if(notOver){
+        displayCases(caseNumbers, prizes);
         for(int i = 4; i > 0; i--){
             printf("%i more case(s) to open\n", i);
             openCase();
         }
         sleep(4);
         bankerOffer(5);
-        displayCases(caseNumbers, prizes);
     }
     if(notOver){
+        displayCases(caseNumbers, prizes);
         for(int i = 3; i > 0; i--){
             printf("%i more case(s) to open\n", i);
             openCase();
         }
         sleep(4);
         bankerOffer(4);
-        displayCases(caseNumbers, prizes);
     }
     if(notOver){
+        displayCases(caseNumbers, prizes);
         for(int i = 3; i > 0; i--){
             printf("%i more case(s) to open\n", i);
             openCase();
         }
         sleep(4);
         bankerOffer(4);
-        displayCases(caseNumbers, prizes);
     }
     if(notOver){
+        displayCases(caseNumbers, prizes);
         for(int i = 2; i > 0; i--){
             printf("%i more case(s) to open\n", i);
             openCase();
         }
         sleep(4);
         bankerOffer(3);
-        displayCases(caseNumbers, prizes);
     }
     if(notOver){
+        displayCases(caseNumbers, prizes);
         for(int i = 1; i > 0; i--){
             printf("%i more case(s) to open\n", i);
             openCase();
         }
         sleep(4);
         bankerOffer(3);
-        displayCases(caseNumbers, prizes);
     }
     if(notOver){
         printf("----------CONGRATULATIONS----------\n");
