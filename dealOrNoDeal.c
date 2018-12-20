@@ -11,13 +11,15 @@ int maxMin[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
 int casesOpened[20];
 int notOver = 1, len = 0;
 int choice;
-//int currentMoney = 2017716;
-int currentMoney = 1000000;
 
 
-int stripCommas(char s[9]){
+int stripCommas(char str[9]){
+    char s[9];
+    for(int i = 0; i < 9; i++){
+        s[i] = str[i];
+    }
     char temp;
-    for(int i = 0; i < 6; i++){
+    for(int i = 0; i < 7; i++){
         if(s[i] == ','){
             if(s[i] == s[i+1] && s[i] == ','){
                 temp = s[i];
@@ -30,7 +32,6 @@ int stripCommas(char s[9]){
             }
         }
     }
-    
     int num = atoi(s);
     return num;
 }
@@ -145,7 +146,6 @@ void juggleCases(){
 
 void openCase(){
     int currentChoice;
-    // int minus;
     int inside;
     int cont = 1;
     do{
@@ -172,9 +172,6 @@ void openCase(){
     printf("    ------------------\n");
     printf("    :    %s   :\n", prizes[inside]);
     printf("    ------------------\n");
-    // minus = stripCommas(prizes[inside]);
-    // currentMoney = currentMoney - minus;
-    // printf("ans: %i\n", currentMoney);
     for(int i = 0; i < 2; i++){
         caseNumbers[currentChoice][i] = ' ';
     }
