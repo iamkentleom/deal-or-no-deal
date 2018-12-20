@@ -205,6 +205,7 @@ int main(){
         bankerOffer(5);
     }
     if(notOver){
+        system("cls");
         displayCases(caseNumbers, prizes);
         for(int i = 4; i > 0; i--){
             printf("%i more case(s) to open\n", i);
@@ -214,6 +215,7 @@ int main(){
         bankerOffer(5);
     }
     if(notOver){
+        system("cls");
         displayCases(caseNumbers, prizes);
         for(int i = 3; i > 0; i--){
             printf("%i more case(s) to open\n", i);
@@ -223,6 +225,7 @@ int main(){
         bankerOffer(4);
     }
     if(notOver){
+        system("cls");
         displayCases(caseNumbers, prizes);
         for(int i = 3; i > 0; i--){
             printf("%i more case(s) to open\n", i);
@@ -232,6 +235,7 @@ int main(){
         bankerOffer(4);
     }
     if(notOver){
+        system("cls");
         displayCases(caseNumbers, prizes);
         for(int i = 2; i > 0; i--){
             printf("%i more case(s) to open\n", i);
@@ -241,6 +245,7 @@ int main(){
         bankerOffer(3);
     }
     if(notOver){
+        system("cls");
         displayCases(caseNumbers, prizes);
         for(int i = 1; i > 0; i--){
             printf("%i more case(s) to open\n", i);
@@ -250,6 +255,9 @@ int main(){
         bankerOffer(3);
     }
     if(notOver){
+        system("cls");
+        printf("Opening your case...");
+        sleep(1);
         printf("----------CONGRATULATIONS----------\n");
         printf(":                                 :\n");
         printf("             %s\n", prizes[choice-1]);
