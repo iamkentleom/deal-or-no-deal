@@ -10,6 +10,28 @@ int x[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
 int casesOpened[20];
 int notOver = 1, len = 0;
 int choice;
+int currentMoney = 2017716;
+
+
+int stripCommas(char s[9]){
+    char temp;
+    for(int i = 0; i < 6; i++){
+        if(s[i] == ','){
+            if(s[i] == s[i+1] && s[i] == ','){
+                temp = s[i];
+                s[i] = s[i+2];
+                s[i+2] = temp;
+            }else{
+                temp = s[i];
+                s[i] = s[i+1];
+                s[i+1] = temp;
+            }
+        }
+    }
+    
+    int num = atoi(s);
+    return num;
+}
 
 void welcomeScreen(){
     printf("\n");
@@ -101,6 +123,7 @@ void juggleCases(){
 
 void openCase(){
     int currentChoice;
+    int minus;
     int inside;
     int cont = 1;
     do{
@@ -126,6 +149,8 @@ void openCase(){
     printf("    ------------------\n");
     printf("    :    %s   :\n", prizes[inside]);
     printf("    ------------------\n");
+    minus = stripCommas(prizes[inside]);
+    currentMoney -= minus;
     for(int i = 0; i < 2; i++){
         caseNumbers[currentChoice][i] = ' ';
     }
@@ -138,12 +163,12 @@ void openCase(){
     
 }
 
-void bankerOffer(){
+void bankerOffer(int x){
     char offerChoice;
     system("cls");
     printf("--------------BANKER'S OFFER--------------\n");
     printf(":                                        :\n");
-    printf(":                 1,000                  :\n");
+    printf("              %i\n", currentMoney/x);
     printf(":                                        :\n");
     printf("------------------------------------------\n\n");
     printf("    press 'Y' - DEAL, any - NO DEAL\n");
@@ -153,7 +178,7 @@ void bankerOffer(){
         system("cls");
         printf("----------CONGRATULATIONS----------\n");
         printf(":                                 :\n");
-        printf(":                                 :\n");
+        printf("          %i\n", currentMoney/x);
         printf(":                                 :\n");
         printf("-----------------------------------\n");
     }
@@ -185,7 +210,7 @@ int main(){
         //     printf("%i ", casesOpened[i]);
         // }
         sleep(5);
-        bankerOffer();
+        bankerOffer(4);
         if(notOver){
             system("cls");
             displayCases(caseNumbers, prizes);
@@ -194,7 +219,7 @@ int main(){
                 openCase();
             }
             sleep(5);
-            bankerOffer();
+            bankerOffer(4);
             if(notOver){
                 system("cls");
                 displayCases(caseNumbers, prizes);
@@ -203,7 +228,7 @@ int main(){
                     openCase();
                 }
                 sleep(5);
-                bankerOffer();
+                bankerOffer(3);
                 if(notOver){
                     system("cls");
                     displayCases(caseNumbers, prizes);
@@ -212,7 +237,7 @@ int main(){
                         openCase();
                     }
                     sleep(5);
-                    bankerOffer();
+                    bankerOffer(3);
                     if(notOver){
                         system("cls");
                         displayCases(caseNumbers, prizes);
@@ -221,7 +246,7 @@ int main(){
                             openCase();
                         }
                         sleep(5);
-                        bankerOffer();
+                        bankerOffer(2);
                         if(notOver){
                             system("cls");
                             displayCases(caseNumbers, prizes);
@@ -230,11 +255,11 @@ int main(){
                                 openCase();
                             }
                             sleep(5);
-                            bankerOffer();
+                            bankerOffer(2);
                             if(notOver){
                                 printf("----------CONGRATULATIONS----------\n");
                                 printf(":                                 :\n");
-                                printf(":                                 :\n");
+                                printf("           %s\n", prizes[choice-1]);
                                 printf(":                                 :\n");
                                 printf("-----------------------------------\n");
                             }else{
