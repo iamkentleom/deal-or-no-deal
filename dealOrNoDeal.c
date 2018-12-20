@@ -7,6 +7,7 @@
 char caseNumbers[][10] = {"01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16","17","18","19","20"};
 char prizes[][50] = {"1        ","5        ","10       ","25       ","50       ","75       ","100      ","200      ","500      ","750      ","1,000    ","5,000    ","10,000   ","25,000   ","50,000   ","75,000   ","100,000  ","250,000  ","500,000  ","1,000,000"};
 int x[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
+int maxMin[] = {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19};
 int casesOpened[20];
 int notOver = 1, len = 0;
 int choice;
@@ -32,6 +33,26 @@ int stripCommas(char s[9]){
     
     int num = atoi(s);
     return num;
+}
+
+int max(){
+    int temp = maxMin[0];
+    for(int i = 0; i < 20; i++){
+        if(maxMin[i] > temp){
+            temp = maxMin[i];
+        }
+    }
+    return temp;
+}
+
+int min(){
+    int temp = maxMin[0];
+    for(int i = 0; i < 20; i++){
+        if(maxMin[i] < temp && maxMin[i] != -1){
+            temp = maxMin[i];
+        }
+    }
+    return temp;
 }
 
 void welcomeScreen(){
@@ -124,7 +145,7 @@ void juggleCases(){
 
 void openCase(){
     int currentChoice;
-    int minus;
+    // int minus;
     int inside;
     int cont = 1;
     do{
@@ -146,12 +167,13 @@ void openCase(){
     casesOpened[len] = currentChoice + 1;
     len++;
     inside = x[currentChoice];
+    maxMin[inside] = -1;
     sleep(2);
     printf("    ------------------\n");
     printf("    :    %s   :\n", prizes[inside]);
     printf("    ------------------\n");
-    minus = stripCommas(prizes[inside]);
-    currentMoney = currentMoney - minus;
+    // minus = stripCommas(prizes[inside]);
+    // currentMoney = currentMoney - minus;
     // printf("ans: %i\n", currentMoney);
     for(int i = 0; i < 2; i++){
         caseNumbers[currentChoice][i] = ' ';
@@ -167,10 +189,12 @@ void openCase(){
 
 void bankerOffer(int x){
     char offerChoice;
+    int offer = (stripCommas(prizes[max()]) + stripCommas(prizes[min()]))/2;
+    offer = (offer*x)/100;
     system("cls");
     printf("--------------BANKER'S OFFER--------------\n");
     printf(":                                        :\n");
-    printf("                %i\n", currentMoney/x);
+    printf("                %i\n", offer);
     printf(":                                        :\n");
     printf("------------------------------------------\n\n");
     printf("    press 'Y' - DEAL, any - NO DEAL\n");
@@ -180,7 +204,7 @@ void bankerOffer(int x){
         system("cls");
         printf("----------CONGRATULATIONS----------\n");
         printf(":                                 :\n");
-        printf("             %i\n", currentMoney/x);
+        printf("             %i\n", offer);
         printf(":                                 :\n");
         printf("-----------------------------------\n");
     }
@@ -203,7 +227,7 @@ int main(){
             openCase();
         }
         sleep(4);
-        bankerOffer(5);
+        bankerOffer(75);
     }
     if(notOver){
         system("cls");
@@ -213,7 +237,7 @@ int main(){
             openCase();
         }
         sleep(4);
-        bankerOffer(5);
+        bankerOffer(75);
     }
     if(notOver){
         system("cls");
@@ -223,7 +247,7 @@ int main(){
             openCase();
         }
         sleep(4);
-        bankerOffer(4);
+        bankerOffer(80);
     }
     if(notOver){
         system("cls");
@@ -233,7 +257,7 @@ int main(){
             openCase();
         }
         sleep(4);
-        bankerOffer(4);
+        bankerOffer(80);
     }
     if(notOver){
         system("cls");
@@ -243,7 +267,7 @@ int main(){
             openCase();
         }
         sleep(4);
-        bankerOffer(3);
+        bankerOffer(90);
     }
     if(notOver){
         system("cls");
@@ -253,7 +277,7 @@ int main(){
             openCase();
         }
         sleep(4);
-        bankerOffer(3);
+        bankerOffer(90);
     }
     if(notOver){
         system("cls");
