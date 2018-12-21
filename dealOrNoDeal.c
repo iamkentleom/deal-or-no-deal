@@ -213,6 +213,10 @@ int main(){
     juggleCases();
     if(notOver){
         system("cls");
+        for(int i = 0; i < 20; i++){
+            printf("%i ", x[i]);
+        }
+        printf("\n");
         chooseCase();
         for(int i = 0; i < 2; i++){
             caseNumbers[choice-1][i] = ' ';
@@ -278,11 +282,11 @@ int main(){
     }
     if(notOver){
         system("cls");
-        printf("Opening your case...");
+        printf("Opening your case...\n");
         sleep(1);
         printf("----------CONGRATULATIONS----------\n");
         printf(":                                 :\n");
-        printf("             %s\n", prizes[choice-1]);
+        printf("             %s\n", prizes[x[choice-1]]);
         printf(":                                 :\n");
         printf("-----------------------------------\n");
     }
